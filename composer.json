@@ -1,0 +1,15 @@
+{
+    "name": "danielcrt/pinata-laravel",
+    "description": "The Laravel provider for Pinata API.",
+    "keywords": [
+        "framework",
+        "laravel",
+        "lumen",
+        "pinata"
+    ],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "illuminate/support": "^8.77"
+    }
+}
