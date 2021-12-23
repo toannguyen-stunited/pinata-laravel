@@ -11,5 +11,10 @@
     "type": "project",
     "require": {
         "illuminate/support": "^8.77"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pinata\\": "src/"
+        }
     }
 }
