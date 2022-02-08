@@ -23,12 +23,12 @@ class Client
         $this->client = $client;
     }
 
-    protected function addHashToPinQueue(string $hashToPin): array
+    public function addHashToPinQueue(string $hashToPin): array
     {
         return $this->doCall('/pinning/addHashToPinQueue', 'POST', ['hashToPin' => $hashToPin]);
     }
 
-    protected function pinFileToIPFS(string $filePath, array $metadata = null): array
+    public function pinFileToIPFS(string $filePath, array $metadata = null): array
     {
         return json_decode($this->client->post('/pinning/pinFileToIPFS', [
             'multipart' => [
@@ -40,23 +40,23 @@ class Client
         ])->getBody()->getContents(), true);
     }
 
-    protected function pinHashToIPFS(string $hashToPin): array
+    public function pinHashToIPFS(string $hashToPin): array
     {
         return $this->doCall('/pinning/pinHashToIPFS', 'POST', ['hashToPin' => $hashToPin]);
     }
 
-    protected function pinJobs(): array
+    public function pinJobs(): array
     {
         return json_decode($this->client->get('/pinning/pinJobs')->getBody()->getContents(), true);
     }
 
-    protected function pinJSONToIPFS(array $json, array $metadata = null): array
+    public function pinJSONToIPFS(array $json, array $metadata = null): array
     {
         $content = ($metadata) ? ['pinataMetadata' => $metadata, 'pinataContent' => $json] : $json;
         return $this->doCall('/pinning/pinJSONToIPFS', 'POST', $content);
     }
 
-    protected function removePinFromIPFS(string $hash): bool
+    public function removePinFromIPFS(string $hash): bool
     {
         $return = $this->client->post('/pinning/removePinFromIPFS', [
             \GuzzleHttp\RequestOptions::JSON => ['ipfs_pin_hash' => $hash],
@@ -65,12 +65,12 @@ class Client
         return $return->getStatusCode() === 200;
     }
 
-    protected function userPinnedDataTotal(): array
+    public function userPinnedDataTotal(): array
     {
         return json_decode($this->client->get('/data/userPinnedDataTotal')->getBody()->getContents(), true);
     }
 
-    protected function userPinList(): array
+    public function userPinList(): array
     {
         return json_decode($this->client->get('/data/userPinList')->getBody()->getContents(), true);
     }
